@@ -12,6 +12,7 @@ def main():
                 parsed_logs.append(result)
 
     failed_logins = detect_failed_logins(parsed_logs)
+    pages_by_ip = detect_directory_scans(parsed_logs)
     unique_ips = set(log["ip"] for log in parsed_logs)
 
     print("=" * 40)
@@ -36,6 +37,12 @@ def main():
 
     if not found_attack:
         print("No brute-force attacks detected.")
+
+        print("\nDirectory Scan Detection")
+        print("-" * 40)
+        for ip, pages in pages_by_ip.items():
+            if len(pages) >= 5:
+                print(f"Possible directory scan from {ip}")
 
 
     failed_logins = detect_failed_logins(parsed_logs)
