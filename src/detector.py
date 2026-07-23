@@ -23,3 +23,17 @@ def detect_failed_logins(parsed_logs):
 
     return failed_logins
 
+def detect_directory_scans(parsed_logs):
+
+    pages_by_ip = {}
+
+    for log in parsed_logs:
+        ip = log["ip"]
+        path = log["path"]
+
+        if ip not in pages_by_ip:
+            pages_by_ip[ip] = set()
+
+        pages_by_ip[ip].add(path)
+
+    return pages_by_ip

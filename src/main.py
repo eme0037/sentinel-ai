@@ -1,4 +1,4 @@
-from detector import detect_failed_logins
+from detector import detect_failed_logins, detect_directory_scans
 from parser import parse_log_line
 
 def main():
