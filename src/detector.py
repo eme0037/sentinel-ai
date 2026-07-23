@@ -22,3 +22,4 @@ def detect_failed_logins(parsed_logs):
             failed_logins[ip] = failed_logins.get(ip, 0) + 1
 
     return failed_logins
+
